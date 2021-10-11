@@ -1,3 +1,5 @@
+// student interface
+
 
 // node import for console input
 
@@ -18,6 +20,11 @@ var localStorage = require('localStorage')
 
 // importing local database
 const studentDB = require('./localStudentDB.json');
+// fs.readFile('localStudentDB.json', (err, data) => {
+//     if (err) throw err;
+//     let studentDB = JSON.parse(data);
+//     console.log(studentDB);
+// });
 
 // console.log(studentDB)
 
@@ -88,9 +95,11 @@ function deleteStudent() {
 }
 
 function saveLocally(data) {
-    if (typeof data != "string") {data = JSON.stringify(data)}
+    if ((typeof data) != "string") {data = JSON.stringify(data)
+        console.log(data)
+    }
 
-    fs.writeFile('./localStudentDB.json', data, 'utf8', (err) => {
+    fs.writeFileSync('localStudentDB.json', data, (err) => {
 
     if (err) {
         console.log(`Error writing file: ${err}`);
@@ -158,7 +167,7 @@ function student() {
                 student()
         }
     } else if (Number(operations) == 6) {
-        return `thank you`
+        return null
     } else {
         console.log("INVALID OPERATION! select an operation number from the list")
         student()
