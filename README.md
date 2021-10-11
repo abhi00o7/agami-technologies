@@ -1,7 +1,8 @@
-# agami-technologies
+# Student Database
 created student CRUD application for agami-technologies
 
 ## run 
-```
-  # npm install 
-```
+
+### **`npm install`**
+
+ to install dependencies 
