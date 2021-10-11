@@ -98,7 +98,8 @@ function saveLocally(data) {
         console.log(`File is saved successfully!`);
     }
 
-});
+    })
+}
 
 
 
@@ -149,6 +150,7 @@ function student() {
                 readStudents()
                 student()
             case 5:
+                console.log(studentDB)
                 saveLocally(studentDB)
                 student()
             default:
@@ -162,6 +164,6 @@ function student() {
         student()
     }
 
-}}
+}
 
 student()
