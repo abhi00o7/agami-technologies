@@ -1,4 +1,4 @@
-// student interface
+//importing dependencies 
 
 
 // node import for console input
@@ -9,24 +9,8 @@ const prompt = require("prompt-sync")({
 const fs = require('fs');
 
 
-const {
-    create
-} = require("domain");
-const {
-    getEventListeners
-} = require("events");
-var localStorage = require('localStorage')
-
-
 // importing local database
 const studentDB = require('./localStudentDB.json');
-// fs.readFile('localStudentDB.json', (err, data) => {
-//     if (err) throw err;
-//     let studentDB = JSON.parse(data);
-//     console.log(studentDB);
-// });
-
-// console.log(studentDB)
 
 function createStudent() {
     const name = prompt("Student name?");
@@ -89,23 +73,22 @@ function deleteStudent() {
     console.log(`roll no to delete: ${deleteStudentRoll}`);
     `enter code here`
 
-    // console.log()
-
-    delete studentDB.deleteStudentRoll
+    delete studentDB[deleteStudentRoll]
 }
 
 function saveLocally(data) {
-    if ((typeof data) != "string") {data = JSON.stringify(data)
-        console.log(data)
+    if ((typeof data) != "string") {
+        data = JSON.stringify(data)
+        // console.log(data)
     }
 
     fs.writeFileSync('localStudentDB.json', data, (err) => {
 
-    if (err) {
-        console.log(`Error writing file: ${err}`);
-    } else {
-        console.log(`File is saved successfully!`);
-    }
+        if (err) {
+            console.log(`Error writing file: ${err}`);
+        } else {
+            console.log(`File is saved successfully!`);
+        }
 
     })
 }
@@ -131,14 +114,14 @@ function saveLocally(data) {
 function student() {
 
     const
-     operationsList = "\n1.Add a New Student\n2.Edit an existing Student\n3.Remove Student\n4.List Students\n5.save\n6.exit()"
+        operationsList = "\n1.Add a New Student\n2.Edit an existing Student\n3.Remove Student\n4.List Students\n5.save\n6.exit()"
     console.log(operationsList)
 
     const operations = prompt("\n\nChoose a number for the operation you wish to perform:")
     // console.log(typeof Number(operations))
     console.log(`The Operation selected is Number ${operations} \n`)
 
-    if (Number(operations) <= 5 && Number(operations) > 0) {
+    if (Number(operations) <= 6 && Number(operations) > 0) {
 
         switch (Number(operations)) {
             case 1:
@@ -158,15 +141,20 @@ function student() {
             case 4:
                 readStudents()
                 student()
+                break;
             case 5:
                 console.log(studentDB)
                 saveLocally(studentDB)
                 student()
+                break;
+            case 6:
+                return `thank you`
             default:
                 // code block
                 student()
+                break;
         }
-    } else if (Number(operations) == 6) {
+    } else if (Number(operations) === 6) {
         return null
     } else {
         console.log("INVALID OPERATION! select an operation number from the list")
