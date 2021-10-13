@@ -12,8 +12,9 @@ const fs = require('fs');
 // importing local database
 const studentDB = require('./localStudentDB.json');
 
+// CRUD functions
 function createStudent() {
-    const name = prompt("Student name?");
+    const name = prompt("Student name?"); 
     console.log(`Name: ${name}`);
     `enter code here`
 
@@ -113,8 +114,7 @@ function saveLocally(data) {
 
 function student() {
 
-    const
-        operationsList = "\n1.Add a New Student\n2.Edit an existing Student\n3.Remove Student\n4.List Students\n5.save\n6.exit()"
+    const operationsList = "\n1.Add a New Student\n2.Edit an existing Student\n3.Remove Student\n4.List Students\n5.save\n6.exit()"
     console.log(operationsList)
 
     const operations = prompt("\n\nChoose a number for the operation you wish to perform:")
@@ -162,5 +162,5 @@ function student() {
     }
 
 }
-
+// main code block initialization
 student()
